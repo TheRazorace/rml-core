@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="en" dir="ltr"><head>
-<meta charset="utf-8">
+<meta charset="utf8">
 <meta name="generator" content="ReSpec 35.2.2">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
@@ -1240,13 +1240,13 @@ Each test case is contained in a single folder, containing three types of files:
     ];
   rml:predicateObjectMap [
       rml:objectMap [
-          rml:reference <span class="hljs-string">"$.FirstName"</span>
+          rml:reference <span class="hljs-string">"$.Name"</span>
         ];
       rml:predicate foaf:name
     ];
   rml:subjectMap [
       rml:graphMap [
-          rml:reference <span class="hljs-string">"$.ID"</span>;
+          rml:reference <span class="hljs-string">"$.Name"</span>;
           rml:termType rml:Literal
         ];
       rml:template <span class="hljs-string">"http://example.com/Student/{$.ID}/{$.FirstName}"</span>

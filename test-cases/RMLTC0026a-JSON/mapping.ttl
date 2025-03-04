@@ -1,25 +1,22 @@
+@prefix ex: <http://example.com/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix rml: <http://w3id.org/rml/> .
 
 <http://example.com/base/TriplesMap1> a rml:TriplesMap;
   rml:logicalSource [ a rml:LogicalSource;
-      rml:iterator "$.students[*]";
+      rml:iterator "$.persons[*]";
       rml:referenceFormulation rml:JSONPath;
       rml:source [ a rml:RelativePathSource;
           rml:root rml:MappingDirectory;
-          rml:path "student.json"
+          rml:path "persons.json"
         ]
     ];
   rml:predicateObjectMap [
       rml:objectMap [
-          rml:reference "$.FirstName"
+          rml:reference "$.amounts"
         ];
-      rml:predicate foaf:name
+      rml:predicate ex:amount
     ];
   rml:subjectMap [
-      rml:graphMap [
-          rml:reference "$.ID";
-          rml:termType rml:Literal
-        ];
-      rml:template "http://example.com/Student/{$.ID}/{$.FirstName}"
+      rml:template "http://example.com/Student/{$.fname}/{$.lname}"
     ] .

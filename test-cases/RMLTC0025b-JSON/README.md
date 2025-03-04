@@ -1,8 +1,8 @@
-## RMLTC0007h-JSON
+## RMLTC0025b-JSON
 
-**Title**: "Assigning triples to a non-IRI named graph"
+**Title**: "Usage of constant term maps in combination with explicitly defined term types"
 
-**Description**: "Tests the generation of triples to a non-IRI named graph, which is an error"
+**Description**: "Tests the usage of constant term maps in combination with explicitly defined term types"
 
 **Error expected?** Yes
 
@@ -10,9 +10,10 @@
 ```
 {
   "students": [{
-    "ID": 10,
-    "FirstName":"Venus",
-    "LastName":"Williams"
+    "Name":"Venus"
+  },
+  {
+    "Name":"Julio"
   }]
 }
 
@@ -22,6 +23,7 @@
 ```
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix rml: <http://w3id.org/rml/> .
+@prefix ex: <http://example.com/>.
 
 <http://example.com/base/TriplesMap1> a rml:TriplesMap;
   rml:logicalSource [ a rml:LogicalSource;
@@ -34,17 +36,14 @@
     ];
   rml:predicateObjectMap [
       rml:objectMap [
-          rml:reference "$.FirstName"
+          rml:reference "$.Name"
         ];
-      rml:predicate foaf:name
+      rml:predicate ex:student
     ];
   rml:subjectMap [
-      rml:graphMap [
-          rml:reference "$.ID";
-          rml:termType rml:Literal
-        ];
-      rml:template "http://example.com/Student/{$.ID}/{$.FirstName}"
-    ] .
+      rml:constant "School";
+      rml:termType rml:BlankNode
+  ] .
 
 ```
 

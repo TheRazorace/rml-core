@@ -1,18 +1,19 @@
-## RMLTC0007h-JSON
+## RMLTC0025a-JSON
 
-**Title**: "Assigning triples to a non-IRI named graph"
+**Title**: "Generation of triples with constant blank node "
 
-**Description**: "Tests the generation of triples to a non-IRI named graph, which is an error"
+**Description**: "Tests the generation of triples with a constant blank node"
 
-**Error expected?** Yes
+**Error expected?** No
 
 **Input**
 ```
 {
   "students": [{
-    "ID": 10,
-    "FirstName":"Venus",
-    "LastName":"Williams"
+    "Name":"Venus"
+  },
+  {
+    "Name":"Julio"
   }]
 }
 
@@ -22,6 +23,7 @@
 ```
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix rml: <http://w3id.org/rml/> .
+@prefix ex: <http://example.com/>.
 
 <http://example.com/base/TriplesMap1> a rml:TriplesMap;
   rml:logicalSource [ a rml:LogicalSource;
@@ -34,17 +36,18 @@
     ];
   rml:predicateObjectMap [
       rml:objectMap [
-          rml:reference "$.FirstName"
+          rml:reference "$.Name"
         ];
-      rml:predicate foaf:name
+      rml:predicate ex:student
     ];
-  rml:subjectMap [
-      rml:graphMap [
-          rml:reference "$.ID";
-          rml:termType rml:Literal
-        ];
-      rml:template "http://example.com/Student/{$.ID}/{$.FirstName}"
-    ] .
+  rml:subject _:School .
+
+```
+
+**Output**
+```
+_:School <http://example.com/student> "Julio" .
+_:School <http://example.com/student> "Venus" .
 
 ```
 
